@@ -29,7 +29,7 @@ end
 # unset irrelevant variables
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/Users/atabekarapov/Documents/Twitter-django-project/env"
+set -gx VIRTUAL_ENV "/home/elaman/Documents/Bootcamp/week10/Tasks/tweet_clone/Twitter-Hakathon/env"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH

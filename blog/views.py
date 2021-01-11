@@ -7,13 +7,14 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.db.models import Count
 from .forms import NewCommentForm
+from django.db.models import Q
 
 
 def is_users(post_user, logged_user):
     return post_user == logged_user
 
 
-PAGINATION_COUNT = 100
+
 
 
 class PostListView(LoginRequiredMixin, ListView):
@@ -21,7 +22,7 @@ class PostListView(LoginRequiredMixin, ListView):
     template_name = 'blog/home.html'
     context_object_name = 'posts'
     ordering = ['-date_posted']
-    paginate_by = PAGINATION_COUNT
+    paginate_by = 5
 
     def get_context_data(self, **kwargs):
         data = super().get_context_data(**kwargs)
@@ -51,7 +52,7 @@ class UserPostListView(LoginRequiredMixin, ListView):
     model = Post
     template_name = 'blog/user_posts.html'
     context_object_name = 'posts'
-    paginate_by = PAGINATION_COUNT
+    paginate_by = 5
 
     def visible_user(self):
         return get_object_or_404(User, username=self.kwargs.get('username'))
@@ -192,3 +193,24 @@ class FollowersListView(ListView):
         data = super().get_context_data(**kwargs)
         data['follow'] = 'followers'
         return data
+
+
+
+def search(request):
+    queryset = None
+    query = request.GET.get('q')
+    if query:
+        if query.startswith('#'):
+            queryset = Post.objects.all().filter(
+                Q(caption__icontains=query)
+                ).distinct()
+        else:
+            Profile = apps.get_model('users', 'Profile')
+            queryset = Profile.objects.all().filter(
+                Q(user__username__icontains=query)
+                ).distinct()
+
+    context = {
+        'posts': queryset
+    }
+    return render(request, "blog/search.html", context)

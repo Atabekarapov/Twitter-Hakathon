@@ -1,4 +1,4 @@
-#!/Users/atabekarapov/Documents/Twitter-django-project/env/bin/python3
+#!/home/elaman/Documents/Bootcamp/week10/Tasks/tweet_clone/Twitter-Hakathon/env/bin/python3
 # When the django-admin.py deprecation ends, remove this script.
 import warnings
 

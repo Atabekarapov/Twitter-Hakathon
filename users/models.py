@@ -6,6 +6,11 @@ from PIL import Image
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.ImageField(default='default.jpg', upload_to='profile_pics')
+    location = models.CharField(max_length=220, null=True, blank=True)
+    bio = models.TextField(blank=True, null=True)
+    date = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    followers = models.ManyToManyField(User, related_name='following', blank=True)
 
     def __str__(self):
         return f'{self.user.username} Profile'
@@ -33,3 +38,5 @@ class Follow(models.Model):
     user = models.ForeignKey(User, related_name='user', on_delete=models.CASCADE)
     follow_user = models.ForeignKey(User, related_name='follow_user', on_delete=models.CASCADE)
     date = models.DateTimeField(auto_now_add=True)
+
+    
