@@ -205,7 +205,7 @@
                         <a class="btn btn-sm btn-outline-secondary mb-4 mr-2"
                                 href="?page=1">First</a>
                         <a class="btn btn-sm btn-outline-secondary mb-4 mr-2"
-                                href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                                href="?page={{ page_obj.previous_page_number }}"><-</a>
                     {% endif %}
 
                     {% for num in page_obj.paginator.page_range %}
@@ -220,7 +220,7 @@
 
                     {% if page_obj.has_next %}
                         <a class="btn btn-sm btn-outline-secondary mb-4 mr-2"
-                                href="?page={{ page_obj.next_page_number }}">Next</a>
+                                href="?page={{ page_obj.next_page_number }}">-></a>
                            <a class="btn btn-sm btn-outline-secondary mb-4 mr-2"
                             href="?page={{ page_obj.paginator.num_pages }}">Last</a>
                     {% endif %}

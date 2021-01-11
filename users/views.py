@@ -33,3 +33,14 @@ def profile(request):
         pform = ProfileUpdateForm(instance=request.user.profile)
 
     return render(request, 'users/profile.html', {'uform': uform, 'pform': pform})
+
+
+# @login_required
+# def SearchView(request):
+#     if request.method == 'POST':
+#         post = request.POST.get('search')
+#         results = User.objects.filter(username__contains=post)
+#         context = {
+#             'results':results
+#         }
+#         return render(request, 'users/search_result.html', context)

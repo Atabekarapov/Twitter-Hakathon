@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/Users/atabekarapov/Documents/Twitter-django-project/env"
+VIRTUAL_ENV="/home/elaman/Documents/Bootcamp/week10/Tasks/tweet_clone/Twitter-Hakathon/env"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
